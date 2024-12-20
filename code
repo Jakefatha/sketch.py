@@ -1,0 +1,44 @@
+import turtle
+import colorsys
+
+screen = turtle.Screen()
+screen.bgcolor("black")
+screen.title("Harmony")
+
+mandala = turtle.Turtle()
+mandala.speed(0)
+mandala.hideturtle()
+
+def draw_mandala():
+	num_colors = 36
+	hue = 0
+	for i in range(36):
+		mandala.color(colorsys.hsv_to_rgb(hue,1,1))
+		hue += 1 / num_colors
+		mandala.pensize(2)
+		mandala.penup()
+		mandala.goto(0,0)
+		mandala.pendown()
+		for _ in range(6):
+			mandala.forward(100)
+			mandala.left(60)
+			mandala.forward(100)
+			mandala.left(120)
+		mandala.left(10)
+
+def draw_circles():
+        mandala.pensize(1)
+        hue = 0.5
+        for i in range(18):
+                mandala.penup()
+                mandala.goto(0, -50 - i * 10)
+                mandala.pendown()
+                mandala.color(colorsys.hsv_to_rgb(hue, 1, 1))
+                hue += 0.05
+                mandala.circle(50 + i * 10)
+
+draw_mandala()
+draw_circles()
+
+screen.mainloop()
+
